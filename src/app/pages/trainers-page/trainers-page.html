@@ -1,7 +1,4 @@
 <h1> Trainers </h1>
 
-<ul>
-  @for (trainer of trainers(); track trainer.id) {
-    <li>{{ trainer.name }}</li>
-  }
-</ul>
+<app-trainers-list [trainers]="trainers()" />
+

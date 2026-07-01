@@ -2,10 +2,11 @@ import { Component, inject, OnInit, signal, Signal } from '@angular/core';
 import { TrainersApi } from '../../services/api/trainers-api';
 import { TrainerDto } from '../../services/api/trainer-dto';
 import { JsonPipe } from '@angular/common';
+import { TrainersList } from './trainers-list/trainers-list';
 
 @Component({
   selector: 'app-trainers-page',
-  imports: [],
+  imports: [TrainersList],
   templateUrl: './trainers-page.html',
   styleUrl: './trainers-page.css',
 })
