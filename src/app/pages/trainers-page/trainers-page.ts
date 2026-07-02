@@ -15,14 +15,14 @@ export class TrainersPage implements OnInit {
   public trainers = signal<TrainerDto[]>([]);
 
   ngOnInit(): void {
-    this.trainersAPI.getAll().subscribe((trainers) => {
+    this.trainersAPI.getAll().subscribe(trainers => {
       this.trainers.set(trainers);
     });
   }
 
   protected removeTrainer(trainer: TrainerDto) {
     this.trainersAPI.delete(trainer.id).subscribe(() => {
-      this.trainers.update((trainers) => trainers.filter((t) => t.id !== trainer.id));
+      this.trainers.update(trainers => trainers.filter(t => t.id !== trainer.id));
     });
   }
 }

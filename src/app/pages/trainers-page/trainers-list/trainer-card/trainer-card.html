@@ -1,22 +1,11 @@
 <article
-  class="flex w-full max-w-sm flex-col overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-gray-200 transition-shadow hover:shadow-xl"
->
+  class="flex w-full max-w-sm flex-col overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-gray-200 transition-shadow hover:shadow-xl">
   <div class="relative h-48 w-full bg-gray-100">
-    <img
-      [ngSrc]="trainer().avatarUrl"
-      [alt]="trainer().name + ' portrait'"
-      fill
-      class="object-cover"
-    />
-    <span
-      class="absolute top-3 left-3 rounded-full bg-black/60 px-2 py-0.5 text-xs font-medium text-white"
-    >
+    <img [ngSrc]="trainer().avatarUrl" [alt]="trainer().name + ' portrait'" fill="" class="object-cover" />
+    <span class="absolute top-3 left-3 rounded-full bg-black/60 px-2 py-0.5 text-xs font-medium text-white">
       #{{ trainer().id }}
     </span>
-    <span
-      class="absolute top-3 right-3 rounded-full px-2.5 py-1 text-xs font-semibold"
-      [class]="levelBadgeClasses()"
-    >
+    <span class="absolute top-3 right-3 rounded-full px-2.5 py-1 text-xs font-semibold" [class]="levelBadgeClasses()">
       {{ levelLabel() }}
     </span>
   </div>
@@ -31,13 +20,11 @@
           fill="none"
           stroke="currentColor"
           stroke-width="2"
-          aria-hidden="true"
-        >
+          aria-hidden="true">
           <path
             d="M12 21s-7-6.24-7-11a7 7 0 1 1 14 0c0 4.76-7 11-7 11Z"
             stroke-linecap="round"
-            stroke-linejoin="round"
-          />
+            stroke-linejoin="round" />
           <circle cx="12" cy="10" r="2.5" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
         <span>{{ trainer().hometown }}</span>
@@ -49,25 +36,25 @@
     <p class="text-sm leading-relaxed text-gray-700">{{ trainer().description }}</p>
 
     <div class="mt-auto flex items-center gap-2 border-t border-gray-100 pt-3 text-sm text-gray-600">
-      <svg
-        class="size-4 shrink-0 text-amber-500"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        aria-hidden="true"
-      >
-        <path
-          d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2Z"
-        />
+      <svg class="size-4 shrink-0 text-amber-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2Z" />
       </svg>
-      <span>Pokémon préféré : <span class="font-medium text-gray-900">#{{ trainer().favoritePokemon }}</span></span>
+      <span>
+        Pokémon préféré : <span class="font-medium text-gray-900">#{{ trainer().favoritePokemon }}</span>
+      </span>
     </div>
 
     <button
       type="button"
       (click)="delete()"
-      class="inline-flex items-center justify-center gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-2 text-sm font-semibold text-red-700 transition-colors hover:bg-red-100 hover:text-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
-    >
-      <svg class="size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      class="inline-flex items-center justify-center gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-2 text-sm font-semibold text-red-700 transition-colors hover:bg-red-100 hover:text-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">
+      <svg
+        class="size-4 shrink-0"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true">
         <path d="M4 7h16" stroke-linecap="round" stroke-linejoin="round" />
         <path d="M6 7v13a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7" stroke-linecap="round" stroke-linejoin="round" />
         <path d="M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3" stroke-linecap="round" stroke-linejoin="round" />
