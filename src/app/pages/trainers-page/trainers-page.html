@@ -1,3 +1,9 @@
 <h1>Trainers</h1>
 
 <app-trainers-list [trainers]="trainers()" (trainerDeleted)="removeTrainer($event)" />
+
+<div class="absolute right-6 bottom-6">
+  <button type="button" matFab aria-label="Ajouter un dresseur" (click)="openAddTrainerDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
