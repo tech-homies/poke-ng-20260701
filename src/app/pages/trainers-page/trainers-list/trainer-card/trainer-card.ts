@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TrainerDto } from '../../../../services/api/trainer-dto';
 
@@ -17,6 +17,7 @@ const LEVEL_BADGE_CLASSES: Record<TrainerDto['level'], string> = {
 })
 export class TrainerCard {
   readonly trainer = input.required<TrainerDto>();
+  readonly deleted = output();
 
   readonly levelLabel = computed(() => {
     const level = this.trainer().level;
@@ -24,4 +25,8 @@ export class TrainerCard {
   });
 
   readonly levelBadgeClasses = computed(() => LEVEL_BADGE_CLASSES[this.trainer().level]);
+
+  protected delete(): void {
+    this.deleted.emit();
+  }
 }

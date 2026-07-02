@@ -1,3 +1,3 @@
 @for (trainer of trainers(); track trainer.id) {
-  <app-trainer-card [trainer]="trainer" />
+  <app-trainer-card [trainer]="trainer" (deleted)="removeTrainerFromList(trainer)" />
 }

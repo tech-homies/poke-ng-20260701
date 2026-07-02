@@ -1,7 +1,6 @@
-import { Component, inject, OnInit, signal, Signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { TrainersApi } from '../../services/api/trainers-api';
 import { TrainerDto } from '../../services/api/trainer-dto';
-import { JsonPipe } from '@angular/common';
 import { TrainersList } from './trainers-list/trainers-list';
 
 @Component({
@@ -18,6 +17,12 @@ export class TrainersPage implements OnInit {
   ngOnInit(): void {
     this.trainersAPI.getAll().subscribe((trainers) => {
       this.trainers.set(trainers);
+    });
+  }
+
+  protected removeTrainer(trainer: TrainerDto) {
+    this.trainersAPI.delete(trainer.id).subscribe(() => {
+      this.trainers.update((trainers) => trainers.filter((t) => t.id !== trainer.id));
     });
   }
 }

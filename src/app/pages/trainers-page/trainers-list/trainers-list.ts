@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { TrainerDto } from '../../../services/api/trainer-dto';
 import { TrainerCard } from './trainer-card/trainer-card';
 
@@ -10,4 +10,9 @@ import { TrainerCard } from './trainer-card/trainer-card';
 })
 export class TrainersList {
   readonly trainers = input<TrainerDto[]>([]);
+  readonly trainerDeleted = output<TrainerDto>();
+
+  protected removeTrainerFromList(trainer: TrainerDto) {
+    this.trainerDeleted.emit(trainer);
+  }
 }

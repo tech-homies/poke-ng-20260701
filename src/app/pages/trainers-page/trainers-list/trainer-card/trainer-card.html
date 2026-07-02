@@ -61,5 +61,20 @@
       </svg>
       <span>Pokémon préféré : <span class="font-medium text-gray-900">#{{ trainer().favoritePokemon }}</span></span>
     </div>
+
+    <button
+      type="button"
+      (click)="delete()"
+      class="inline-flex items-center justify-center gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-2 text-sm font-semibold text-red-700 transition-colors hover:bg-red-100 hover:text-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+    >
+      <svg class="size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M4 7h16" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M6 7v13a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M10 11v6" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M14 11v6" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      Supprimer
+    </button>
   </div>
 </article>

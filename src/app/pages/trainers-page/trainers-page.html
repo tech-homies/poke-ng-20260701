@@ -1,4 +1,6 @@
 <h1> Trainers </h1>
 
-<app-trainers-list [trainers]="trainers()" />
+<app-trainers-list
+  [trainers]="trainers()"
+  (trainerDeleted)="removeTrainer($event)" />
 
