@@ -1,8 +1,8 @@
 import { Component, computed, input, output } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { TrainerDto } from '../../../../services/api/trainer-dto';
+import { TrainerModel } from '../../../../services/api/trainer-model';
 
-const LEVEL_BADGE_CLASSES: Record<TrainerDto['level'], string> = {
+const LEVEL_BADGE_CLASSES: Record<TrainerModel['level'], string> = {
   beginner: 'bg-green-100 text-green-800',
   intermediate: 'bg-blue-100 text-blue-800',
   advanced: 'bg-orange-100 text-orange-800',
@@ -16,7 +16,7 @@ const LEVEL_BADGE_CLASSES: Record<TrainerDto['level'], string> = {
   styleUrl: './trainer-card.css',
 })
 export class TrainerCard {
-  readonly trainer = input.required<TrainerDto>();
+  readonly trainer = input.required<TrainerModel>();
   readonly deleted = output();
 
   readonly levelLabel = computed(() => {

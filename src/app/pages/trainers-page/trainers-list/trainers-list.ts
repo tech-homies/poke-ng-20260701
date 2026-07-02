@@ -1,6 +1,6 @@
 import { Component, input, output } from '@angular/core';
-import { TrainerDto } from '../../../services/api/trainer-dto';
 import { TrainerCard } from './trainer-card/trainer-card';
+import { TrainerModel } from '../../../services/api/trainer-model';
 
 @Component({
   selector: 'app-trainers-list',
@@ -9,10 +9,10 @@ import { TrainerCard } from './trainer-card/trainer-card';
   styleUrl: './trainers-list.css',
 })
 export class TrainersList {
-  readonly trainers = input<TrainerDto[]>([]);
-  readonly trainerDeleted = output<TrainerDto>();
+  readonly trainers = input<TrainerModel[]>([]);
+  readonly trainerDeleted = output<TrainerModel>();
 
-  protected removeTrainerFromList(trainer: TrainerDto) {
+  protected removeTrainerFromList(trainer: TrainerModel) {
     this.trainerDeleted.emit(trainer);
   }
 }
