@@ -1,9 +1,46 @@
 <h2 mat-dialog-title>Ajouter un dresseur</h2>
 
-<mat-dialog-content>
-  <!-- TODO: formulaire d'ajout de dresseur -->
-</mat-dialog-content>
+<form (submit)="submitForm($event)">
+  <mat-dialog-content>
+    <div class="flex flex-col gap-2">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input type="text" matInput [formField]="form.name" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Age</mat-label>
+        <input type="number" matInput [formField]="form.age" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Domicile</mat-label>
+        <input type="text" matInput [formField]="form.hometown" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput [formField]="form.description"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Niveau</mat-label>
+        <mat-select>
+          <mat-option [value]="'beginner'">beginner</mat-option>
+          <mat-option [value]="'intermediate'">intermediate</mat-option>
+          <mat-option [value]="'advanced'">advanced</mat-option>
+          <mat-option [value]="'master'">master</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Avatar</mat-label>
+        <input type="url" matInput [formField]="form.avatarUrl" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Pokemon Favori</mat-label>
+        <input type="number" matInput [formField]="form.favoritePokemon" />
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
 
-<mat-dialog-actions align="end">
-  <button type="button" mat-button mat-dialog-close>Annuler</button>
-</mat-dialog-actions>
+  <mat-dialog-actions align="end">
+    <button type="button" matButton mat-dialog-close>Annuler</button>
+    <button type="submit" matButton="tonal" [disabled]="form().invalid()">Ajouter</button>
+  </mat-dialog-actions>
+</form>

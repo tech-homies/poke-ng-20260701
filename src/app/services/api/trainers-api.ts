@@ -4,6 +4,7 @@ import { TrainerDto } from './trainer-dto';
 import { concatAll, concatMap, filter, map, mergeMap, Observable, toArray } from 'rxjs';
 import { TrainerModel } from './trainer-model';
 import { PokemonsApi } from './pokemons-api';
+import { AddTrainerDto } from './add-trainer-dto';
 
 @Service()
 export class TrainersApi {
@@ -12,15 +13,6 @@ export class TrainersApi {
 
   public getAll(): Observable<TrainerDto[]> {
     return this.http.get<TrainerDto[]>('http://localhost:3000/trainers');
-  }
-
-  public getAllWithDoubleAge(): Observable<TrainerDto[]> {
-    return this.getAll().pipe(
-      concatAll(),
-      filter(trainer => trainer.hometown !== 'Argenta'),
-      map(trainer => ({ ...trainer, age: trainer.age * 2 })),
-      toArray()
-    );
   }
 
   public getAllWithFavoritePokemon(): Observable<TrainerModel[]> {
@@ -36,5 +28,9 @@ export class TrainersApi {
 
   public delete(trainerId: TrainerDto['id']): Observable<void> {
     return this.http.delete<void>(`http://localhost:3000/trainers/'${trainerId}`);
+  }
+
+  public add(trainer: AddTrainerDto): Observable<TrainerDto> {
+    return this.http.post<TrainerDto>(`http://localhost:3000/trainers`, trainer);
   }
 }
