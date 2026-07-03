@@ -8,7 +8,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { TrainersStore } from '../../store/trainers.store';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
@@ -16,7 +16,17 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
   selector: 'app-nav',
   templateUrl: './nav.html',
   styleUrl: './nav.css',
-  imports: [MatToolbarModule, MatButtonModule, MatSidenavModule, MatListModule, MatIconModule, AsyncPipe, RouterOutlet],
+  imports: [
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    AsyncPipe,
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
+  ],
 })
 export class Nav {
   private breakpointObserver = inject(BreakpointObserver);
