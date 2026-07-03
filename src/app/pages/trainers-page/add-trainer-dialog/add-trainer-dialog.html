@@ -4,43 +4,73 @@
   <mat-dialog-content>
     <div class="flex flex-col gap-2">
       <mat-form-field appearance="outline">
-        <mat-label>Name</mat-label>
+        <mat-label>Nom</mat-label>
         <input type="text" matInput [formField]="form.name" />
+        @if (form.name().errors().length) {
+          <mat-error>{{ form.name().errors()[0].message }}</mat-error>
+        }
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Age</mat-label>
+        <mat-label>Âge</mat-label>
         <input type="number" matInput [formField]="form.age" />
+        @if (form.age().errors().length) {
+          <mat-error>{{ form.age().errors()[0].message }}</mat-error>
+        }
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Domicile</mat-label>
         <input type="text" matInput [formField]="form.hometown" />
+        @if (form.hometown().errors().length) {
+          <mat-error>{{ form.hometown().errors()[0].message }}</mat-error>
+        }
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Description</mat-label>
         <textarea matInput [formField]="form.description"></textarea>
+        @if (form.description().errors().length) {
+          <mat-error>{{ form.description().errors()[0].message }}</mat-error>
+        }
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Niveau</mat-label>
-        <mat-select>
-          <mat-option [value]="'beginner'">beginner</mat-option>
-          <mat-option [value]="'intermediate'">intermediate</mat-option>
-          <mat-option [value]="'advanced'">advanced</mat-option>
-          <mat-option [value]="'master'">master</mat-option>
+        <mat-select [formField]="form.level">
+          @for (level of levels; track level.value) {
+            <mat-option [value]="level.value">{{ level.label }}</mat-option>
+          }
         </mat-select>
+        @if (form.level().errors().length) {
+          <mat-error>{{ form.level().errors()[0].message }}</mat-error>
+        }
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Avatar</mat-label>
         <input type="url" matInput [formField]="form.avatarUrl" />
+        @if (form.avatarUrl().errors().length) {
+          <mat-error>{{ form.avatarUrl().errors()[0].message }}</mat-error>
+        }
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Pokemon Favori</mat-label>
+        <mat-label>Pokémon favori (n° Pokédex)</mat-label>
         <input type="number" matInput [formField]="form.favoritePokemon" />
+        @if (form.favoritePokemon().pending()) {
+          <mat-hint>Vérification dans le Pokédex…</mat-hint>
+        } @else if (favoritePokemonName(); as pokemonName) {
+          <mat-hint>✓ {{ pokemonName }}</mat-hint>
+        }
+        @if (form.favoritePokemon().errors().length) {
+          <mat-error>{{ form.favoritePokemon().errors()[0].message }}</mat-error>
+        }
       </mat-form-field>
+      @if (form().errors().length) {
+        <p role="alert" class="text-sm text-red-700">{{ form().errors()[0].message }}</p>
+      }
     </div>
   </mat-dialog-content>
 
   <mat-dialog-actions align="end">
     <button type="button" matButton mat-dialog-close>Annuler</button>
-    <button type="submit" matButton="tonal" [disabled]="form().invalid()">Ajouter</button>
+    <button type="submit" matButton="tonal" [disabled]="form().invalid() || form().pending() || form().submitting()">
+      {{ form().submitting() ? 'Ajout en cours…' : 'Ajouter' }}
+    </button>
   </mat-dialog-actions>
 </form>
