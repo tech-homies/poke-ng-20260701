@@ -27,7 +27,7 @@ export class TrainersApi {
   }
 
   public delete(trainerId: TrainerDto['id']): Observable<void> {
-    return this.http.delete<void>(`http://localhost:3000/trainers/'${trainerId}`);
+    return this.http.delete<void>(`http://localhost:3000/trainers/${trainerId}`);
   }
 
   public add(trainer: AddTrainerDto): Observable<TrainerDto> {
