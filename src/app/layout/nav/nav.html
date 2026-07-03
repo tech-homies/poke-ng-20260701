@@ -21,6 +21,15 @@
         </button>
       }
       <span>poke-ng</span>
+      <span class="w-full"></span>
+      <span>
+        Nb Trainers :
+        @if (trainersResource.isLoading()) {
+          loading...
+        } @else {
+          {{ trainersResource.value().length }}
+        }
+      </span>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet />

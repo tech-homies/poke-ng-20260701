@@ -1,11 +1,11 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { TrainersApi } from '../../services/api/trainers-api';
 import { TrainersList } from './trainers-list/trainers-list';
 import { TrainerModel } from '../../services/api/trainer-model';
 import { AddTrainerDialog } from './add-trainer-dialog/add-trainer-dialog';
+import { TrainersStore } from '../../store/trainers.store';
 
 @Component({
   selector: 'app-trainers-page',
@@ -13,22 +13,14 @@ import { AddTrainerDialog } from './add-trainer-dialog/add-trainer-dialog';
   templateUrl: './trainers-page.html',
   styleUrl: './trainers-page.css',
 })
-export class TrainersPage implements OnInit {
-  private trainersAPI = inject(TrainersApi);
+export class TrainersPage {
   private dialog = inject(MatDialog);
+  private trainersStore = inject(TrainersStore);
 
-  public trainers = signal<TrainerModel[]>([]);
-
-  ngOnInit(): void {
-    this.trainersAPI.getAllWithFavoritePokemon().subscribe(trainers => {
-      this.trainers.set(trainers);
-    });
-  }
+  public trainersResource = this.trainersStore.trainersResource;
 
   protected removeTrainer(trainer: TrainerModel) {
-    this.trainersAPI.delete(trainer.id).subscribe(() => {
-      this.trainers.update(trainers => trainers.filter(t => t.id !== trainer.id));
-    });
+    this.trainersStore.removeTrainer(trainer).subscribe();
   }
 
   protected openAddTrainerDialog(): void {

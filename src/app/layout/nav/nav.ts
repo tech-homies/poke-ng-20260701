@@ -9,6 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { RouterOutlet } from '@angular/router';
+import { TrainersStore } from '../../store/trainers.store';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-nav',
@@ -18,6 +20,9 @@ import { RouterOutlet } from '@angular/router';
 })
 export class Nav {
   private breakpointObserver = inject(BreakpointObserver);
+  private trainersStore = inject(TrainersStore);
+
+  protected trainersResource = this.trainersStore.trainersResource;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(result => result.matches),

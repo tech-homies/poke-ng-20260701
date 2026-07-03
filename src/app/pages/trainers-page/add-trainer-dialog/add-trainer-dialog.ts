@@ -12,6 +12,7 @@ import { TrainersApi } from '../../../services/api/trainers-api';
 import { PokemonsApi } from '../../../services/api/pokemons-api';
 import { PokemonDto } from '../../../services/api/pokemon-dto';
 import { TrainerDto } from '../../../services/api/trainer-dto';
+import { TrainersStore } from '../../../store/trainers.store';
 
 @Component({
   selector: 'app-add-trainer-dialog',
@@ -30,9 +31,9 @@ import { TrainerDto } from '../../../services/api/trainer-dto';
   templateUrl: './add-trainer-dialog.html',
 })
 export class AddTrainerDialog {
-  private readonly trainersApi = inject(TrainersApi);
   private readonly pokemonsApi = inject(PokemonsApi);
-  private readonly dialogRef: MatDialogRef<AddTrainerDialog, TrainerDto> = inject(MatDialogRef);
+  private readonly trainersStore = inject(TrainersStore);
+  private readonly dialogRef: MatDialogRef<AddTrainerDialog> = inject(MatDialogRef);
 
   protected readonly levels = [
     { value: 'beginner', label: 'Débutant' },
@@ -94,7 +95,7 @@ export class AddTrainerDialog {
     // Retourner un objet { kind, message } depuis le callback attache une erreur serveur au formulaire.
     submit(this.form, async () => {
       try {
-        const trainer = await firstValueFrom(this.trainersApi.add(this.newTrainer()));
+        const trainer = await firstValueFrom(this.trainersStore.addTrainer(this.newTrainer()));
         this.dialogRef.close(trainer);
         return undefined;
       } catch {

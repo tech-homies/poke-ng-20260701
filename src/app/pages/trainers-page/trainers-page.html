@@ -1,6 +1,10 @@
 <h1>Trainers</h1>
 
-<app-trainers-list [trainers]="trainers()" (trainerDeleted)="removeTrainer($event)" />
+@if (trainersResource.isLoading()) {
+  is Loading...
+} @else {
+  <app-trainers-list [trainers]="trainersResource.value()" (trainerDeleted)="removeTrainer($event)" />
+}
 
 <div class="absolute right-6 bottom-6">
   <button type="button" matFab aria-label="Ajouter un dresseur" (click)="openAddTrainerDialog()">
