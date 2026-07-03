@@ -5,13 +5,14 @@ import { concatAll, concatMap, filter, map, mergeMap, Observable, toArray } from
 import { TrainerModel } from './trainer-model';
 import { PokemonsApi } from './pokemons-api';
 import { AddTrainerDto } from './add-trainer-dto';
+import { environment } from '../../../environments/environment';
 
 @Service()
 export class TrainersApi {
   private http = inject(HttpClient);
   private pokemonsApi = inject(PokemonsApi);
 
-  public resourceUrl = 'http://localhost:3000/trainers';
+  public resourceUrl = `${environment.apiUrl}/trainers`;
 
   public getAll(): Observable<TrainerDto[]> {
     return this.http.get<TrainerDto[]>(this.resourceUrl);

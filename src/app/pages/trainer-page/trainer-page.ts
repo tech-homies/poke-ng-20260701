@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { httpResource } from '@angular/common/http';
 import { TrainersApi } from '../../services/api/trainers-api';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -11,11 +11,10 @@ import { toSignal } from '@angular/core/rxjs-interop';
   templateUrl: './trainer-page.html',
   styleUrl: './trainer-page.css',
 })
-export class TrainerPage {
+export default class TrainerPage {
   private trainersAPI = inject(TrainersApi);
-  private route = inject(ActivatedRoute);
-  private params = toSignal(this.route.params);
+  public readonly id = input(); // from query Params
 
   // TODO: test d'export de la resource depuis le service
-  protected readonly trainer = httpResource(() => `${this.trainersAPI.resourceUrl}/${this.params()?.['id']}`);
+  protected readonly trainer = httpResource(() => `${this.trainersAPI.resourceUrl}/${this.id()}`);
 }

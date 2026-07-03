@@ -13,7 +13,7 @@ import { TrainersStore } from '../../store/trainers.store';
   templateUrl: './trainers-page.html',
   styleUrl: './trainers-page.css',
 })
-export class TrainersPage {
+export default class TrainersPage {
   private dialog = inject(MatDialog);
   private trainersStore = inject(TrainersStore);
 
