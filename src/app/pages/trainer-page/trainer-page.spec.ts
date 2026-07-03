@@ -1,0 +1,22 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { TrainerPage } from './trainer-page';
+
+describe('TrainerPage', () => {
+  let component: TrainerPage;
+  let fixture: ComponentFixture<TrainerPage>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [TrainerPage],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(TrainerPage);
+    component = fixture.componentInstance;
+    await fixture.whenStable();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

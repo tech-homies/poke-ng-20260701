@@ -1,6 +1,8 @@
 import { Component, computed, input, output } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TrainerModel } from '../../../../services/api/trainer-model';
+import { MatIcon } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 
 const LEVEL_BADGE_CLASSES: Record<TrainerModel['level'], string> = {
   beginner: 'bg-green-100 text-green-800',
@@ -11,7 +13,7 @@ const LEVEL_BADGE_CLASSES: Record<TrainerModel['level'], string> = {
 
 @Component({
   selector: 'app-trainer-card',
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage, MatIcon, RouterLink],
   templateUrl: './trainer-card.html',
   styleUrl: './trainer-card.css',
 })

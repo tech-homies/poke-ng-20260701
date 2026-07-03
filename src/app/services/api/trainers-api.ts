@@ -11,8 +11,10 @@ export class TrainersApi {
   private http = inject(HttpClient);
   private pokemonsApi = inject(PokemonsApi);
 
+  public resourceUrl = 'http://localhost:3000/trainers';
+
   public getAll(): Observable<TrainerDto[]> {
-    return this.http.get<TrainerDto[]>('http://localhost:3000/trainers');
+    return this.http.get<TrainerDto[]>(this.resourceUrl);
   }
 
   public getAllWithFavoritePokemon(): Observable<TrainerModel[]> {
@@ -27,10 +29,10 @@ export class TrainersApi {
   }
 
   public delete(trainerId: TrainerDto['id']): Observable<void> {
-    return this.http.delete<void>(`http://localhost:3000/trainers/${trainerId}`);
+    return this.http.delete<void>(`${this.resourceUrl}/${trainerId}`);
   }
 
   public add(trainer: AddTrainerDto): Observable<TrainerDto> {
-    return this.http.post<TrainerDto>(`http://localhost:3000/trainers`, trainer);
+    return this.http.post<TrainerDto>(this.resourceUrl, trainer);
   }
 }
